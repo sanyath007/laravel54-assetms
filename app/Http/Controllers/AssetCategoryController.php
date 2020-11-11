@@ -100,7 +100,7 @@ class AssetCategoryController extends Controller
     public function add()
     {
     	return view('asset-cates.add', [
-            'groups' => AssetGroup::all(),
+            'groups' => AssetGroup::orderBy('group_no')->get(),
     	]);
     }
 
@@ -129,7 +129,7 @@ class AssetCategoryController extends Controller
     {
         return view('asset-cates.edit', [
             'cate' => AssetCategory::find($cateId),
-            'groups' => AssetGroup::all(),
+            'groups' => AssetGroup::orderBy('group_no')->get(),
         ]);
     }
 
