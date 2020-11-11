@@ -117,6 +117,10 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
                 toaster.pop('error', "", 'พบข้อผิดพลาด !!!');
             });
         }
+
+        setTimeout(function (){
+            window.location.href = CONFIG.baseUrl + '/asset-cate/list';
+        }, 2000);
     };
 
     $scope.delete = function(cateId) {

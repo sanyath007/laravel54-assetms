@@ -92,6 +92,10 @@ app.controller('assetGroupCtrl', function($scope, $http, toaster, CONFIG, ModalS
                 toaster.pop('error', "", 'พบข้อผิดพลาด !!!');
             });
         }
+
+        setTimeout(function (){
+            window.location.href = CONFIG.baseUrl + '/asset-group/list';
+        }, 2000);
     };
 
     $scope.delete = function(groupId) {

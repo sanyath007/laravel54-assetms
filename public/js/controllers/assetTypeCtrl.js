@@ -118,8 +118,7 @@ app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalSe
 
         setTimeout(function (){
             window.location.href = CONFIG.baseUrl + '/asset-type/list';
-        }, 2000);
-        
+        }, 2000);        
     };
 
     $scope.delete = function(typeId) {
