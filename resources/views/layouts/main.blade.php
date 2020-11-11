@@ -10,9 +10,9 @@
 	<title>Asset Management System</title>
 
 	<!-- bootstrap -->
-	<link rel="stylesheet" href="{{ asset('/bower/bootstrap/dist/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
 	<!-- select2 -->
-	<link rel="stylesheet" href="{{ asset('/bower/select2/dist/css/select2.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/select2/dist/css/select2.min.css') }}">
 	<!-- Ionicons -->
 	<link rel="stylesheet" href="{{ asset('/css/ionicons.min.css') }}">
 	<!-- jQuery jvectormap -->
@@ -21,23 +21,19 @@
 	<link rel="stylesheet" href="{{ asset('/css/AdminLTE.min.css') }}">
  	<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="{{ asset('/css/skins/_all-skins.min.css') }}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
 	<!-- Fonts -->
-	<!-- <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto:400,300' type='text/css'> -->
+	<link rel='stylesheet' href='//fonts.googleapis.com/css?family=Roboto:400,300' type='text/css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- 3rd parties -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css"> -->
-	<!-- <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/> -->
-	<link rel="stylesheet" href="{{ asset('/bower/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/daterangepicker.css') }}">
-	<link rel="stylesheet" href="{{ asset('/bower/fullcalendar/dist/fullcalendar.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/bower/ng-tags-input/ng-tags-input.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/bower/AngularJS-Toaster/toaster.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('/bower/angular-xeditable/dist/css/xeditable.css') }}">
-	<!-- Tags Input -->
-	<!-- <link href="{{ asset('/css/bootstrap-tagsinput.css') }}" rel="stylesheet">
-	<link href="{{ asset('/css/bootstrap-tagsinput-typeahead.css') }}" rel="stylesheet"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.5.0/balloon.min.css">
+	<link rel="stylesheet" href="{{ asset('/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/daterangepicker/daterangepicker.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/jquery-ui-dist/jquery-ui.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/angularjs-toaster/toaster.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/fullcalendar/dist/fullcalendar.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/ng-tags-input/build/ng-tags-input.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('/node_modules/angular-xeditable/dist/css/xeditable.css') }}">
 	<!-- Inline Style -->
 	<style type="text/css">
 		.has-error .select2-selection {
@@ -49,31 +45,28 @@
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="{{ asset('/js/env.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/jquery/dist/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/angular/angular.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/moment/moment.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/fullcalendar/dist/fullcalendar.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/fullcalendar/dist/locale/th.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/ng-tags-input/ng-tags-input.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/angular-animate/angular-animate.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/AngularJS-Toaster/toaster.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/angular-xeditable/dist/js/xeditable.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/angular-modal-service/dst/angular-modal-service.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/underscore/underscore-min.js') }}"></script>
-	<!-- Tags Input -->
-	<!-- <script type="text/javascript" src="{{ asset('/js/bootstrap-tagsinput.min.js') }}"></script> -->
-	<!-- <script type="text/javascript" src="{{ asset('/js/bootstrap-tagsinput-angular.min.js') }}"></script> -->
+	<script type="text/javascript" src="{{ asset('/node_modules/jquery/dist/jquery.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/angular/angular.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/moment/moment.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/underscore/underscore-min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/angular-animate/angular-animate.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/angularjs-toaster/toaster.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/angular-modal-service/dst/angular-modal-service.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/angular-xeditable/dist/js/xeditable.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/fullcalendar/dist/fullcalendar.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/fullcalendar/dist/locale/th.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/ng-tags-input/build/ng-tags-input.min.js') }}"></script>
 	<!-- jQuery-UI -->
-	<script type="text/javascript" src="{{ asset('/bower/jquery-ui/jquery-ui.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/jquery-ui-dist/jquery-ui.min.js') }}"></script>
 	<!-- Other -->
-	<script type="text/javascript" src="{{ asset('/bower/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/select2/dist/js/select2.full.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/daterangepicker/lib/daterangepicker/daterangepicker.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+	<!--<script type="text/javascript" src="{{ asset('/bower/bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.all.min.js') }}"></script>-->
+	<script type="text/javascript" src="{{ asset('/node_modules/select2/dist/js/select2.full.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/daterangepicker/daterangepicker.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/bootstrap-datepicker-custom.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/bower/bootstrap-datepicker/dist/locales/bootstrap-datepicker.th.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/node_modules/bootstrap-datepicker/dist/locales/bootstrap-datepicker.th.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.knob.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/fastclick.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/thaibath.js') }}"></script>
@@ -97,10 +90,10 @@
 	<script type="text/javascript" src="{{ asset('/js/controllers/deprecTypeCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/parcelCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/reportCtrl.js') }}"></script>
-	<!--<script type="text/javascript" src="{{ asset('/js/directives/highcharts.js') }}"></script>-->
 	<script type="text/javascript" src="{{ asset('/js/services/report.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/services/stringFormat.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/services/pagination.js') }}"></script>
+	<!--<script type="text/javascript" src="{{ asset('/js/directives/highcharts.js') }}"></script>-->
 
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<!--<script type="text/javascript" src="{{ asset('/js/services/dashboard.js') }}"></script>-->

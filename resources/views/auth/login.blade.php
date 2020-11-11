@@ -10,7 +10,7 @@
 
     <title>Asset Management System</title>
 
-    <link rel="stylesheet" href="{{ asset('/bower/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/node_modules/bootstrap/dist/css/bootstrap.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
@@ -99,8 +99,8 @@
     </div><!-- /.wrapper -->
 
     <!-- Scripts -->
-    <script src="{{ asset('/bower/jquery/dist/jquery.min.js') }}"></script>
-	<script src="{{ asset('/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/node_modules/jquery/dist/jquery.min.js') }}"></script>
+	<script src="{{ asset('/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('/js/adminlte.min.js') }}"></script>
 </body>
