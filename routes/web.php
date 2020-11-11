@@ -84,9 +84,9 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/asset-type/validate', 'AssetTypeController@formValidate');
     Route::get('asset-type/list', 'AssetTypeController@index');
 	Route::get('asset-type/search/{searchKey}', 'AssetTypeController@search');
+    Route::get('asset-type/get-ajax-all', 'AssetTypeController@getAll');
     Route::get('asset-type/get-ajax-byid/{typeId}', 'AssetTypeController@getById');
-    Route::get('asset-type/get-ajax-all/{cateId}', 'AssetTypeController@getAjexAll');
-    Route::get('asset-type/get-ajax-no/{cateId}', 'AssetTypeController@getAjexNo');
+    Route::get('asset-type/get-ajax-no/{cateId}', 'AssetTypeController@getNo');
     Route::get('asset-type/add', 'AssetTypeController@add');
     Route::post('asset-type/store', 'AssetTypeController@store');
     Route::get('asset-type/edit/{typeId}', 'AssetTypeController@edit');
@@ -97,24 +97,14 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/asset-cate/validate', 'AssetCategoryController@formValidate');
     Route::get('asset-cate/list', 'AssetCategoryController@index');
     Route::get('asset-cate/search/{searchKey}', 'AssetCategoryController@search');
+    Route::get('asset-cate/get-ajax-all', 'AssetCategoryController@getAll');
     Route::get('asset-cate/get-ajax-byid/{cateeId}', 'AssetCategoryController@getById');
+    Route::get('asset-cate/get-ajax-no/{groupId}', 'AssetCategoryController@getNo');
     Route::get('asset-cate/add', 'AssetCategoryController@add');
     Route::post('asset-cate/store', 'AssetCategoryController@store');
     Route::get('asset-cate/edit/{cateeId}', 'AssetCategoryController@edit');
     Route::put('asset-cate/update', 'AssetCategoryController@update');
     Route::delete('asset-cate/delete/{cateeId}', 'AssetCategoryController@delete');
-
-    /** Asset Unit */
-    Route::post('/asset-unit/validate', 'AssetUnitController@formValidate');
-    Route::get('asset-unit/list', 'AssetUnitController@index');
-    Route::get('asset-unit/search/{searchKey}', 'AssetUnitController@search');
-    Route::get('asset-unit/get-asset-unit/{unitId}', 'AssetUnitController@getById');
-    Route::get('asset-unit/add', 'AssetUnitController@add');
-    Route::post('asset-unit/store', 'AssetUnitController@store');
-    Route::get('asset-unit/edit/{unitId}', 'AssetUnitController@edit');
-    Route::put('asset-unit/update', 'AssetUnitController@update');
-    Route::delete('asset-unit/delete/{unitId}', 'AssetUnitController@delete');
-
 
     /** Asset Group */
     Route::post('/asset-group/validate', 'AssetGroupController@formValidate');
@@ -130,22 +120,35 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::delete('asset-group/delete/{typeId}', 'AssetGroupController@delete');
 
     /** Asset Class */
-    Route::post('/asset-class/validate', 'AssetClassController@formValidate');
-    Route::get('asset-class/list', 'AssetClassController@index');
-    Route::get('asset-class/search/{searchKey}', 'AssetClassController@search');
-    Route::get('asset-class/get-asset-class/{cateId}', 'AssetClassController@getById');
-    Route::get('asset-class/add', 'AssetClassController@add');
-    Route::post('asset-class/store', 'AssetClassController@store');
-    Route::get('asset-class/edit/{cateeId}', 'AssetClassController@edit');
-    Route::put('asset-class/update', 'AssetClassController@update');
-    Route::delete('asset-class/delete/{cateeId}', 'AssetClassController@delete');
+    // Route::post('/asset-class/validate', 'AssetClassController@formValidate');
+    // Route::get('asset-class/list', 'AssetClassController@index');
+    // Route::get('asset-class/search/{searchKey}', 'AssetClassController@search');
+    // Route::get('asset-class/get-ajax-all', 'AssetClassController@getAll');
+    // Route::get('asset-class/get-ajax-byid/{classId}', 'AssetClassController@getById');
+    // Route::get('asset-class/get-ajax-no/{groupId}', 'AssetClassController@getNo');
+    // Route::get('asset-class/add', 'AssetClassController@add');
+    // Route::post('asset-class/store', 'AssetClassController@store');
+    // Route::get('asset-class/edit/{cateeId}', 'AssetClassController@edit');
+    // Route::put('asset-class/update', 'AssetClassController@update');
+    // Route::delete('asset-class/delete/{cateeId}', 'AssetClassController@delete');
+
+    /** Asset Unit */
+    Route::post('/asset-unit/validate', 'AssetUnitController@formValidate');
+    Route::get('asset-unit/list', 'AssetUnitController@index');
+    Route::get('asset-unit/search/{searchKey}', 'AssetUnitController@search');
+    Route::get('asset-unit/get-asset-unit/{unitId}', 'AssetUnitController@getById');
+    Route::get('asset-unit/add', 'AssetUnitController@add');
+    Route::post('asset-unit/store', 'AssetUnitController@store');
+    Route::get('asset-unit/edit/{unitId}', 'AssetUnitController@edit');
+    Route::put('asset-unit/update', 'AssetUnitController@update');
+    Route::delete('asset-unit/delete/{unitId}', 'AssetUnitController@delete');
 
     /** Deprec Type */
     Route::post('/deprec-type/validate', 'DeprecTypeController@formValidate');
     Route::get('deprec-type/list', 'DeprecTypeController@index');
 	Route::get('deprec-type/search/{searchKey}', 'DeprecTypeController@search');
-    Route::get('deprec-type/get-ajax-byid/{typeId}', 'DeprecTypeController@getById');
     Route::get('deprec-type/get-ajax-all', 'DeprecTypeController@getAjexAll');
+    Route::get('deprec-type/get-ajax-byid/{typeId}', 'DeprecTypeController@getById');
     Route::get('deprec-type/add', 'DeprecTypeController@add');
     Route::post('deprec-type/store', 'DeprecTypeController@store');
     Route::get('deprec-type/edit/{typeId}', 'DeprecTypeController@edit');

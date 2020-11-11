@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\AssetGroup;
 use App\Models\AssetCategory;
 
 class AssetCategoryController extends Controller
@@ -36,13 +37,50 @@ class AssetCategoryController extends Controller
     public function search($searchKey)
     {
         if($searchKey == '0') {
-            $cates = AssetCategory::orderBy('cate_no')->paginate(20);
+            $cates = AssetCategory::with('group')
+                        ->orderBy('cate_no')
+                        ->paginate(20);
         } else {
-            $cates = AssetCategory::where('cate_name', 'like', '%'.$searchKey.'%')->orderBy('cate_no')->paginate(20);
+            $cates = AssetCategory::where('cate_name', 'like', '%'.$searchKey.'%')
+                        ->with('group')
+                        ->orderBy('cate_no')
+                        ->paginate(20);
         }
 
         return [
             'cates' => $cates,
+        ];
+    }
+
+    public function getAll()
+    {
+        return [
+            'cates' => AssetCategory::all(),
+        ];
+    }
+
+    public function getById($cateId)
+    {
+        return [
+            'cate' => AssetCategory::find($cateId),
+        ];
+    }
+
+    public function getNo($groupId)
+    {
+        $cate = AssetCategory::where('group_id', '=', $groupId)
+                        ->orderBy('cate_no', 'DESC')
+                        ->first();
+
+        if($cate) {
+            $cateNo = $cate->cate_no;
+        } else {
+            $group = AssetGroup::find($groupId);
+            $cateNo = $group->group_no.'00';
+        }
+        
+        return [
+            'cateNo' => $cateNo
         ];
     }
 
@@ -62,7 +100,7 @@ class AssetCategoryController extends Controller
     public function add()
     {
     	return view('asset-cates.add', [
-            'cates' => AssetCategory::all(),
+            'groups' => AssetGroup::all(),
     	]);
     }
 
@@ -70,8 +108,9 @@ class AssetCategoryController extends Controller
     {
         $cate = new AssetCategory();
         // $cate->cate_id = $this->generateAutoId();
-        $cate->cate_no = $req['cate_no'];
+        $cate->cate_no = $req['group_no'].$req['cate_no'];
         $cate->cate_name = $req['cate_name'];
+        $cate->group_id = $req['group_id'];
 
         if($cate->save()) {
             return [
@@ -86,29 +125,23 @@ class AssetCategoryController extends Controller
         }
     }
 
-    public function getById($cateId)
-    {
-        return [
-            'cate' => AssetCategory::find($cateId),
-        ];
-    }
-
     public function edit($cateId)
     {
         return view('asset-cates.edit', [
-            'type' => AssetCategory::find($cateId),
-            'cates' => \DB::table('asset_categories')->select('*')->get(),
+            'cate' => AssetCategory::find($cateId),
+            'groups' => AssetGroup::all(),
         ]);
     }
 
     public function update(Request $req)
     {
-        $type = AssetCategory::find($req['cate_id']);
+        $cate = AssetCategory::find($req['cate_id']);
 
-        $type->cate_id = $req['cate_id'];
-        $type->cate_name = $req['cate_name'];
+        $cate->cate_no = $req['group_no'].$req['cate_no'];
+        $cate->cate_name = $req['cate_name'];
+        $cate->group_id = $req['group_id'];
 
-        if($type->save()) {
+        if($cate->save()) {
             return [
                 "status" => "success",
                 "message" => "Update success.",
@@ -123,9 +156,9 @@ class AssetCategoryController extends Controller
 
     public function delete($cateId)
     {
-        $type = AssetCategory::find($cateId);
+        $cate = AssetCategory::find($cateId);
 
-        if($type->delete()) {
+        if($cate->delete()) {
             return [
                 "status" => "success",
                 "message" => "Delete success.",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\AssetClass;
+use App\Models\AssetGroup;
 
 class AssetClassController extends Controller
 {
@@ -36,19 +37,51 @@ class AssetClassController extends Controller
     public function search($searchKey)
     {
         if($searchKey == '0') {
-            $cates = AssetClass::paginate(20);
+            $classes = AssetClass::orderBy('class_no')->paginate(20);
         } else {
-            $cates = AssetClass::where('class_name', 'like', '%'.$searchKey.'%')->paginate(20);
+            $classes = AssetClass::where('class_name', 'like', '%'.$searchKey.'%')->orderBy('class_no')->paginate(20);
         }
 
         return [
-            'cates' => $cates,
+            'classes' => $classes,
+        ];
+    }
+
+    public function getAll()
+    {
+        return [
+            'classes' => AssetClass::all(),
+        ];
+    }
+
+    public function getById($classId)
+    {
+        return [
+            'class' => AssetClass::find($classId),
+        ];
+    }
+
+    public function getNo($groupId)
+    {
+        $class = AssetClass::where('group_id', '=', $groupId)
+                        ->orderBy('class_no', 'DESC')
+                        ->first();
+
+        if($class) {
+            $classNo = $class->class_no;
+        } else {
+            $group = AssetGroup::find($groupId);
+            $classNo = $group->group_no.'00';
+        }
+        
+        return [
+            'classNo' => $classNo
         ];
     }
 
     private function generateAutoId()
     {
-        $cate = \DB::table('asset_cates')
+        $cate = \DB::table('asset_classes')
                         ->select('class_no')
                         ->orderBy('class_no', 'DESC')
                         ->first();
@@ -62,18 +95,19 @@ class AssetClassController extends Controller
     public function add()
     {
     	return view('asset-classes.add', [
-            'cates' => AssetClass::all(),
+            'groups' => AssetGroup::orderBy('group_no')->get(),
     	]);
     }
 
     public function store(Request $req)
     {
-        $cate = new AssetClass();
-        // $cate->class_id = $this->generateAutoId();
-        $cate->class_no = $req['class_no'];
-        $cate->class_name = $req['class_name'];
+        $class = new AssetClass();
+        // $class->class_id = $this->generateAutoId();
+        $class->class_no = $req['class_no'];
+        $class->class_name = $req['class_name'];
+        $class->group_id = $req['group_id'];
 
-        if($cate->save()) {
+        if($class->save()) {
             return [
                 "status" => "success",
                 "message" => "Insert success.",
@@ -86,13 +120,6 @@ class AssetClassController extends Controller
         }
     }
 
-    public function getById($classId)
-    {
-        return [
-            'cate' => AssetClass::find($classId),
-        ];
-    }
-
     public function edit($classId)
     {
         return view('asset-classes.edit', [
@@ -103,12 +130,13 @@ class AssetClassController extends Controller
 
     public function update(Request $req)
     {
-        $type = AssetClass::find($req['class_id']);
+        $class = AssetClass::find($req['class_id']);
 
-        $type->class_id = $req['class_id'];
-        $type->class_name = $req['class_name'];
+        $class->class_id = $req['class_id'];
+        $class->class_name = $req['class_name'];
+        $class->group_id = $req['group_id'];
 
-        if($type->save()) {
+        if($class->save()) {
             return [
                 "status" => "success",
                 "message" => "Update success.",
@@ -123,9 +151,9 @@ class AssetClassController extends Controller
 
     public function delete($classId)
     {
-        $type = AssetClass::find($classId);
+        $class = AssetClass::find($classId);
 
-        if($type->delete()) {
+        if($class->delete()) {
             return [
                 "status" => "success",
                 "message" => "Delete success.",

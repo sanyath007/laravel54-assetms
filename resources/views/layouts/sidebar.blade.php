@@ -130,11 +130,6 @@
 								</a>
 							</li>
 							<li>
-								<a href="{{ url('/asset-class/list') }}">
-									<i class="fa fa-circle-o"></i> กลุ่มย่อยครุภัณฑ์
-								</a>
-							</li>
-							<li>
 								<a href="{{ url('/asset-cate/list') }}">
 									<i class="fa fa-circle-o"></i> หมวดครุภัณฑ์
 								</a>

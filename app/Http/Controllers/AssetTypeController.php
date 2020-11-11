@@ -50,7 +50,7 @@ class AssetTypeController extends Controller
         ];
     }
 
-    public function getAjexAll($cateId)
+    public function getAll($cateId)
     {
         $types = AssetType::where('cate_id', '=', $cateId)->get();
 
@@ -59,7 +59,14 @@ class AssetTypeController extends Controller
         ];
     }
 
-    public function getAjexNo($cateId)
+    public function getById($typeId)
+    {
+        return [
+            'type' => AssetType::find($typeId),
+        ];
+    }
+    
+    public function getNo($cateId)
     {
         $type = AssetType::where('cate_id', '=', $cateId)
                         ->orderBy('type_no', 'DESC')
@@ -116,13 +123,6 @@ class AssetTypeController extends Controller
                 "message" => "Insert failed.",
             ];
         }
-    }
-
-    public function getById($typeId)
-    {
-        return [
-            'type' => AssetType::find($typeId),
-        ];
     }
 
     public function edit($typeId)

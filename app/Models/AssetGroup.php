@@ -11,8 +11,8 @@ class AssetGroup extends Model
     // public $incrementing = false; // false = ไม่ใช้ options auto increment
     public $timestamps = false; // false = ไม่ใช้ field updated_at และ created_at
 
-    public function assetClass()
+    public function cate()
     {
-        return $this->hasMany('App\Models\AssetClass', 'group_id', 'group_id');
+        return $this->hasMany('App\Models\AssetCate', 'group_id', 'group_id');
     }
 }

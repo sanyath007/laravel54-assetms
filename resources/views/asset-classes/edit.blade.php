@@ -5,38 +5,38 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            แก้ไขประเภทหนี้ : {{ $debttype->debt_type_id }}
+            แก้ไขกลุ่มย่อยครุภัณฑ์ : {{ $class->class_id }}
             <!-- <small>preview of simple tables</small> -->
         </h1>
 
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">หน้าหลัก</a></li>
-            <li class="breadcrumb-item active">แก้ไขประเภทหนี้</li>
+            <li class="breadcrumb-item active">แก้ไขกลุ่มย่อยครุภัณฑ์</li>
         </ol>
     </section>
 
     <!-- Main content -->
-    <section class="content" ng-controller="debttypeCtrl" ng-init="getDebttype('{{ $debttype->debt_type_id }}')">
+    <section class="content" ng-controller="assetClassCtrl" ng-init="getAssetClass('{{ $class->class_id }}')">
 
         <div class="row">
             <div class="col-md-12">
 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">ฟอร์มแก้ไขประเภทหนี้</h3>
+                        <h3 class="box-title">ฟอร์มแก้ไขกลุ่มย่อยครุภัณฑ์</h3>
                     </div>
 
-                    <form id="frmEditDebttype" name="frmEditDebttype" method="post" action="{{ url('/debttype/update') }}" role="form">
+                    <form id="frmEditDebttype" name="frmEditDebttype" method="post" action="{{ url('/class/update') }}" role="form">
                         <input type="hidden" id="user" name="user" value="{{ Auth::user()->person_id }}">
                         {{ csrf_field() }}
                         
                         <div class="box-body">
                             <div class="col-md-8">
                                 <div class="form-group" ng-class="{ 'has-error' : frmEditDebttype.debt_type_name.$invalid}">
-                                    <label class="control-label">ประเภทหนี้ :</label>
+                                    <label class="control-label">กลุ่มย่อยครุภัณฑ์ :</label>
                                     <input type="text" id="debt_type_name" name="debt_type_name" ng-model="debttype.debt_type_name" class="form-control" required>
                                     <div class="help-block" ng-show="frmEditDebttype.debt_type_name.$error.required">
-                                        กรุณากรอกประเภทหนี้ก่อน
+                                        กรุณากรอกกลุ่มย่อยครุภัณฑ์ก่อน
                                     </div>
                                 </div> 
 

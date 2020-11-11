@@ -8,6 +8,8 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         cate_id: '',
         cate_no: '',
         cate_name: '',
+        group_id: '',
+        group_no: ''
     };
 
     $scope.getData = function(event) {
@@ -52,10 +54,34 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         .then(function(res) {
             console.log(res);
             $scope.cate = res.data.cate;
+            $scope.cate.group_id = $scope.cate.group_id.toString();
+            $scope.cate.group_no = $scope.cate.cate_no.substring(0, 2);
+            $scope.cate.cate_no = $scope.cate.cate_no.substring(2);
         }, function(err) {
             console.log(err);
         });
     }
+
+    $scope.getCateNo = function(groupId) {
+        $scope.loading = true;
+
+        $http.get(CONFIG.baseUrl+ '/asset-cate/get-ajax-no/' +groupId)
+        .then(function(res) {
+            console.log(res);
+            let groupNo = res.data.cateNo.substring(0, 2);
+            let tmpNo = res.data.cateNo.substring(2);
+            
+            let newNo = (parseInt(tmpNo)+1).toString().padStart(2, "0");
+            console.log(`${groupNo}${newNo}`);
+            
+            $scope.cate.group_no = `${groupNo}`;
+
+            $scope.loading = false;
+        }, function(err) {
+            console.log(err);
+            $scope.loading = false;
+        });
+    };
 
     $scope.add = function(event, form) {
         event.preventDefault();
@@ -75,14 +101,13 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
     $scope.edit = function(cateId) {
         console.log(cateId);
 
-        window.location.href = CONFIG.baseUrl + '/asset-cate/edit/' + cateId;
+        window.location.href = CONFIG.baseUrl+ 'asset-cate/edit/' +cateId;
     };
 
-    $scope.update = function(event, form, cateId) {
-        console.log(cateId);
+    $scope.update = function(event, form) {
         event.preventDefault();
 
-        if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + cateId + " ใช่หรือไม่?")) {
+        if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + $scope.cate.cate_id + " ใช่หรือไม่?")) {
             $http.put(CONFIG.baseUrl + '/asset-cate/update', $scope.cate)
             .then(function(res) {
                 console.log(res);

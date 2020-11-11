@@ -54,9 +54,10 @@
                             <thead>
                                 <tr>
                                     <th style="width: 3%; text-align: center;">#</th>
-                                    <th style="width: 10%; text-align: center;">เลขรหัส</th>
+                                    <th style="width: 8%; text-align: center;">เลขรหัส</th>
                                     <th style="text-align: left;">ชื่อหมวดครุภัณฑ์</th>
-                                    <th style="width: 8%; text-align: center;">Actions</th>
+                                    <th style="width: 30%; text-align: center;">กลุ่มครุภัณฑ์</th>
+                                    <th style="width: 12%; text-align: center;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +65,9 @@
                                     <td style="text-align: center;">@{{ index+pager.from }}</td>
                                     <td style="text-align: center;">@{{ cate.cate_no }}</td>
                                     <td style="text-align: left;">@{{ cate.cate_name }}</td>
+                                    <td style="text-align: left;">
+                                        @{{ cate.group ? cate.group.group_no+ '-' +cate.group.group_name : '' }}
+                                    </td>
                                     <td style="text-align: center;">
                                         <a ng-click="edit(cate.cate_id)" class="btn btn-warning btn-sm">
                                             <i class="fa fa-edit"></i>
