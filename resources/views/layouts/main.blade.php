@@ -101,7 +101,7 @@
 	<!--<script type="text/javascript" src="{{ asset('/js/services/demo.js') }}"></script>-->
 </head>
 <!-- To set sidebar mini style on init use .sidebar-collapse to body tag -->
-<body class="skin-blue hold-transition sidebar-mini" ng-app="app" ng-controller="mainCtrl"> 
+<body class="skin-blue hold-transition sidebar-mini sidebar-collapse" ng-app="app" ng-controller="mainCtrl"> 
 	<div class="wrapper">
 		<!-- header -->		
 		@include('layouts.header')		

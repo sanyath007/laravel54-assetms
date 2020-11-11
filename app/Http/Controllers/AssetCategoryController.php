@@ -28,7 +28,7 @@ class AssetCategoryController extends Controller
         }
     }
 
-    public function list()
+    public function index()
     {
     	return view('asset-cates.list');
     }

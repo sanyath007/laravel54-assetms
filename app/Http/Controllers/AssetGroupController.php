@@ -36,19 +36,33 @@ class AssetGroupController extends Controller
     public function search($searchKey)
     {
         if($searchKey == '0') {
-            $cates = AssetGroup::paginate(20);
+            $groups = AssetGroup::orderBy('group_no')->paginate(20);
         } else {
-            $cates = AssetGroup::where('group_name', 'like', '%'.$searchKey.'%')->paginate(20);
+            $groups = AssetGroup::where('group_name', 'like', '%'.$searchKey.'%')->orderBy('group_no')->paginate(20);
         }
 
         return [
-            'cates' => $cates,
+            'groups' => $groups,
+        ];
+    }
+
+    public function getAll()
+    {
+        return [
+            'groups' => AssetGroup::all(),
+        ];
+    }
+    
+    public function getById($groupId)
+    {
+        return [
+            'group' => AssetGroup::find($groupId),
         ];
     }
 
     private function generateAutoId()
     {
-        $cate = \DB::table('asset_cates')
+        $group = \DB::table('asset_cates')
                         ->select('group_no')
                         ->orderBy('group_no', 'DESC')
                         ->first();
@@ -61,9 +75,7 @@ class AssetGroupController extends Controller
 
     public function add()
     {
-    	return view('asset-groups.add', [
-            'cates' => AssetGroup::all(),
-    	]);
+    	return view('asset-groups.add');
     }
 
     public function store(Request $req)
@@ -86,17 +98,10 @@ class AssetGroupController extends Controller
         }
     }
 
-    public function getById($groupId)
-    {
-        return [
-            'cate' => AssetGroup::find($groupId),
-        ];
-    }
-
     public function edit($groupId)
     {
         return view('asset-groups.edit', [
-            'type' => AssetGroup::find($groupId)
+            'group' => AssetGroup::find($groupId)
         ]);
     }
 

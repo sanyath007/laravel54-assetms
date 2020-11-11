@@ -11,10 +11,10 @@ class AssetType extends Model
     public $incrementing = false; // false = ไม่ใช้ options auto increment
     public $timestamps = false; // false = ไม่ใช้ field updated_at และ created_at
 
-    public function assetClass()
-  	{
-      	return $this->belongsTo('App\Models\AssetClass', 'class_id', 'class_id');
-  	}
+   //  public function assetClass()
+  	// {
+   //    	return $this->belongsTo('App\Models\AssetClass', 'class_id', 'class_id');
+  	// }
     
     public function cate()
   	{

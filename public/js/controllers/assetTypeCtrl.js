@@ -106,7 +106,7 @@ app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + $scope.type.type_id + " ใช่หรือไม่?")) {
             $scope.type.cate_id = $('#cate_id option:selected').val();
 
-            $http.put(CONFIG.baseUrl + '/asset-type/update/', $scope.type)
+            $http.put(CONFIG.baseUrl + '/asset-type/update', $scope.type)
             .then(function(res) {
                 console.log(res);
                 toaster.pop('success', "", 'แก้ไขข้อมูลเรียบร้อยแล้ว !!!');

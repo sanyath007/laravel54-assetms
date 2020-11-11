@@ -1,26 +1,26 @@
 app.controller('assetGroupCtrl', function($scope, $http, toaster, CONFIG, ModalService) {
 /** ################################################################################## */
     $scope.loading = false;
-    $scope.cates = [];
+    $scope.groups = [];
     $scope.pager = [];
     
-    $scope.cate = {
-        cate_id: '',
-        cate_no: '',
-        cate_name: '',
+    $scope.group = {
+        group_id: '',
+        group_no: '',
+        group_name: '',
     };
 
     $scope.getData = function(event) {
         console.log(event);
-        $scope.cates = [];
+        $scope.groups = [];
         $scope.loading = true;
         
         let searchKey = ($("#searchKey").val() == '') ? 0 : $("#searchKey").val();
-        $http.get(CONFIG.baseUrl+ '/asset-cate/search/' +searchKey)
+        $http.get(CONFIG.baseUrl+ '/asset-group/search/' +searchKey)
         .then(function(res) {
             console.log(res);
-            $scope.cates = res.data.cates.data;
-            $scope.pager = res.data.cates;
+            $scope.groups = res.data.groups.data;
+            $scope.pager = res.data.groups;
 
             $scope.loading = false;
         }, function(err) {
@@ -31,14 +31,14 @@ app.controller('assetGroupCtrl', function($scope, $http, toaster, CONFIG, ModalS
 
     $scope.getDataWithURL = function(URL) {
         console.log(URL);
-        $scope.cates = [];
+        $scope.groups = [];
         $scope.loading = true;
 
     	$http.get(URL)
     	.then(function(res) {
     		console.log(res);
-            $scope.cates = res.data.cates.data;
-            $scope.pager = res.data.cates;
+            $scope.groups = res.data.groups.data;
+            $scope.pager = res.data.groups;
 
             $scope.loading = false;
     	}, function(err) {
@@ -47,10 +47,20 @@ app.controller('assetGroupCtrl', function($scope, $http, toaster, CONFIG, ModalS
     	});
     }
 
+    $scope.getAssetGroup = function(groupId) {
+        $http.get(CONFIG.baseUrl + '/asset-group/get-ajax-byid/' +groupId)
+        .then(function(res) {
+            console.log(res);
+            $scope.group = res.data.group;
+        }, function(err) {
+            console.log(err);
+        });
+    }
+
     $scope.add = function(event, form) {
         event.preventDefault();
 
-        $http.post(CONFIG.baseUrl + '/asset-cate/store', $scope.cate)
+        $http.post(CONFIG.baseUrl + '/asset-group/store', $scope.group)
         .then(function(res) {
             console.log(res);
             toaster.pop('success', "", 'บันทึกข้อมูลเรียบร้อยแล้ว !!!');
@@ -62,28 +72,18 @@ app.controller('assetGroupCtrl', function($scope, $http, toaster, CONFIG, ModalS
         document.getElementById(form).reset();
     }
 
-    $scope.getAssettype = function(cateId) {
-        $http.get(CONFIG.baseUrl + '/asset-cate/get-asset-cate/' +cateId)
-        .then(function(res) {
-            console.log(res);
-            $scope.cate = res.data.cate;
-        }, function(err) {
-            console.log(err);
-        });
-    }
+    $scope.edit = function(groupId) {
+        console.log(groupId);
 
-    $scope.edit = function(cateId) {
-        console.log(cateId);
-
-        window.location.href = CONFIG.baseUrl + '/asset-cate/edit/' + cateId;
+        window.location.href = CONFIG.baseUrl + '/asset-group/edit/' + groupId;
     };
 
-    $scope.update = function(event, form, cateId) {
-        console.log(cateId);
+    $scope.update = function(event, form) {
         event.preventDefault();
+        console.log($scope.group);
 
-        if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + cateId + " ใช่หรือไม่?")) {
-            $http.put(CONFIG.baseUrl + '/asset-cate/update/', $scope.cate)
+        if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + $scope.group.group_id + " ใช่หรือไม่?")) {
+            $http.put(CONFIG.baseUrl + '/asset-group/update', $scope.group)
             .then(function(res) {
                 console.log(res);
                 toaster.pop('success', "", 'แก้ไขข้อมูลเรียบร้อยแล้ว !!!');
@@ -94,11 +94,11 @@ app.controller('assetGroupCtrl', function($scope, $http, toaster, CONFIG, ModalS
         }
     };
 
-    $scope.delete = function(cateId) {
-        console.log(cateId);
+    $scope.delete = function(groupId) {
+        console.log(groupId);
 
-        if(confirm("คุณต้องลบรายการหนี้เลขที่ " + cateId + " ใช่หรือไม่?")) {
-            $http.delete(CONFIG.baseUrl + '/asset-cate/delete/' +cateId)
+        if(confirm("คุณต้องลบรายการหนี้เลขที่ " + groupId + " ใช่หรือไม่?")) {
+            $http.delete(CONFIG.baseUrl + '/asset-group/delete/' +groupId)
             .then(function(res) {
                 console.log(res);
                 toaster.pop('success', "", 'ลบข้อมูลเรียบร้อยแล้ว !!!');

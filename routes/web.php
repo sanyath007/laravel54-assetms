@@ -97,7 +97,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/asset-cate/validate', 'AssetCategoryController@formValidate');
     Route::get('asset-cate/list', 'AssetCategoryController@index');
     Route::get('asset-cate/search/{searchKey}', 'AssetCategoryController@search');
-    Route::get('asset-cate/get-asset-cate/{cateeId}', 'AssetCategoryController@getById');
+    Route::get('asset-cate/get-ajax-byid/{cateeId}', 'AssetCategoryController@getById');
     Route::get('asset-cate/add', 'AssetCategoryController@add');
     Route::post('asset-cate/store', 'AssetCategoryController@store');
     Route::get('asset-cate/edit/{cateeId}', 'AssetCategoryController@edit');
@@ -120,8 +120,9 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/asset-group/validate', 'AssetGroupController@formValidate');
     Route::get('asset-group/list', 'AssetGroupController@index');
 	Route::get('asset-group/search/{searchKey}', 'AssetGroupController@search');
-    Route::get('asset-group/get-ajax-byid/{typeId}', 'AssetGroupController@getById');
-    Route::get('asset-group/get-ajax-all/{cateId}', 'AssetGroupController@getAjexAll');
+    Route::get('asset-group/get-ajax-all', 'AssetGroupController@getAll');
+    Route::get('asset-group/get-ajax-byid/{groupId}', 'AssetGroupController@getById');
+    Route::get('asset-group/get-ajax-no/{groupId}', 'AssetGroupController@getNo');
     Route::get('asset-group/add', 'AssetGroupController@add');
     Route::post('asset-group/store', 'AssetGroupController@store');
     Route::get('asset-group/edit/{typeId}', 'AssetGroupController@edit');
@@ -132,7 +133,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::post('/asset-class/validate', 'AssetClassController@formValidate');
     Route::get('asset-class/list', 'AssetClassController@index');
     Route::get('asset-class/search/{searchKey}', 'AssetClassController@search');
-    Route::get('asset-class/get-asset-class/{cateeId}', 'AssetClassController@getById');
+    Route::get('asset-class/get-asset-class/{cateId}', 'AssetClassController@getById');
     Route::get('asset-class/add', 'AssetClassController@add');
     Route::post('asset-class/store', 'AssetClassController@store');
     Route::get('asset-class/edit/{cateeId}', 'AssetClassController@edit');

@@ -47,6 +47,16 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
     	});
     }
 
+    $scope.getAssetCate = function(cateId) {
+        $http.get(CONFIG.baseUrl + '/asset-cate/get-ajax-byid/' +cateId)
+        .then(function(res) {
+            console.log(res);
+            $scope.cate = res.data.cate;
+        }, function(err) {
+            console.log(err);
+        });
+    }
+
     $scope.add = function(event, form) {
         event.preventDefault();
 
@@ -62,16 +72,6 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         document.getElementById(form).reset();
     }
 
-    $scope.getAssettype = function(cateId) {
-        $http.get(CONFIG.baseUrl + '/asset-cate/get-asset-cate/' +cateId)
-        .then(function(res) {
-            console.log(res);
-            $scope.cate = res.data.cate;
-        }, function(err) {
-            console.log(err);
-        });
-    }
-
     $scope.edit = function(cateId) {
         console.log(cateId);
 
@@ -83,7 +83,7 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         event.preventDefault();
 
         if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + cateId + " ใช่หรือไม่?")) {
-            $http.put(CONFIG.baseUrl + '/asset-cate/update/', $scope.cate)
+            $http.put(CONFIG.baseUrl + '/asset-cate/update', $scope.cate)
             .then(function(res) {
                 console.log(res);
                 toaster.pop('success', "", 'แก้ไขข้อมูลเรียบร้อยแล้ว !!!');
