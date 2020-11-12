@@ -157,15 +157,9 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
         $http.get(CONFIG.baseUrl+ '/parcel/get-ajax-byid/' +parcelId)
         .then(function(res) {
             console.log(res);
-            
-            if($scope.asset.asset_no) {
-                let [tmpParcelNo, tmpAssetNo] = $scope.asset.asset_no.split('/');
-                $scope.asset.asset_no = tmpAssetNo;
-            }
 
             $scope.asset.parcel_no = res.data.parcel.parcel_no + '/';
             $scope.asset.asset_name = res.data.parcel.parcel_name;
-
             $scope.lifeYear = res.data.parcel.deprec_type.deprec_life_y;
         }, function(err) {
             console.log(err);
@@ -177,8 +171,10 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
         .then(function(res) {
             $scope.asset = res.data.asset;
             console.log($scope.asset);
-            /** Call setAssetNo function to get parcel data */
-            $scope.setAssetNo($scope.asset.parcel_id)
+            /** Separate asset_no and parcel_no */
+            let [tmpParcelNo, tmpAssetNo] = $scope.asset.asset_no.split('/');
+            $scope.asset.parcel_no = tmpParcelNo + '/';
+            $scope.asset.asset_no = tmpAssetNo;
             /** Convert int value to string */
             $scope.asset.parcel_id = $scope.asset.parcel_id.toString();
             $scope.asset.unit = $scope.asset.unit.toString();
