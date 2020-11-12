@@ -6,14 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asset extends Model
 {
-    protected $table = 'assets';
-    
+    protected $table = 'assets';    
     protected $primaryKey = 'asset_id';
-
-    public $incrementing = false; //ไม่ใช้ options auto increment
-
-    public $timestamps = false; //ไม่ใช้ field updated_at และ created_at
-
+    // public $incrementing = false; //ไม่ใช้ options auto increment
+    // public $timestamps = false; //ไม่ใช้ field updated_at และ created_at
     protected $fillable = ['status'];
 
     public function parcel()
