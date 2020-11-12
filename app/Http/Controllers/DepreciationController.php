@@ -36,7 +36,7 @@ class DepreciationController extends Controller
                             ->with('budgetType')
                             ->with('docType')
                             ->with('purchasedMethod')
-                            ->orderBy('year')
+                            ->orderBy('asset_no')
                             ->paginate(20);
 
         return [

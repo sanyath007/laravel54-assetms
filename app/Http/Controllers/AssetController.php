@@ -130,7 +130,7 @@ class AssetController extends Controller
     public function add()
     {
     	return view('assets.add', [
-            "parcels"     => Parcel::all(),
+            "parcels"     => Parcel::orderBy('parcel_no')->get(),
             "units"     => AssetUnit::all(),
             "budgets"   => BudgetType::all(),
             "docs"   => DocumentType::all(),
@@ -186,7 +186,7 @@ class AssetController extends Controller
     {
         return view('assets.edit', [
             "asset"         => Asset::find($assetId),
-            "parcels"       => Parcel::all(),
+            "parcels"     => Parcel::orderBy('parcel_no')->get(),
             "units"         => AssetUnit::all(),
             "budgets"       => BudgetType::all(),
             "docs"          => DocumentType::all(),
