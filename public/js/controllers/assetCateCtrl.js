@@ -1,6 +1,10 @@
 app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalService) {
 /** ################################################################################## */
     $scope.loading = false;
+    $scope.cboAssetGroup = "";
+    $scope.searchKeyword = "";
+
+
     $scope.cates = [];
     $scope.pager = [];
     
@@ -13,12 +17,13 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
     };
 
     $scope.getData = function(event) {
-        console.log(event);
         $scope.cates = [];
         $scope.loading = true;
         
-        let searchKey = ($("#searchKey").val() == '') ? 0 : $("#searchKey").val();
-        $http.get(CONFIG.baseUrl+ '/asset-cate/search/' +searchKey)
+        let assetGroup = $scope.cboAssetGroup === '' ? 0 : $scope.cboAssetGroup;
+        let searchKey = $scope.searchKeyword === '' ? 0 : $scope.searchKeyword;
+        
+        $http.get(`${CONFIG.baseUrl}/asset-cate/search/${assetGroup}/${searchKey}`)
         .then(function(res) {
             console.log(res);
             $scope.cates = res.data.cates.data;

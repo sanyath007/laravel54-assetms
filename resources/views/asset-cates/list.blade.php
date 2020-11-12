@@ -28,10 +28,42 @@
 
                     <form id="frmSearch" name="frmSearch" role="form">
                         <div class="box-body">
-                            <div class="col-md-12">                                
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    <label>หมวดครุภัณฑ์</label>
+                                    <select
+                                        id="assetGroup"
+                                        name="assetGroup"
+                                        ng-model="cboAssetGroup"
+                                        ng-change="getData($event);"
+                                        class="form-control select2"
+                                        style="width: 100%; font-size: 12px;">
+
+                                        <option value="" selected="selected">-- กรุณาเลือก --</option>
+
+                                        @foreach($groups as $group)
+
+                                            <option value="{{ $group->group_id }}">
+                                                {{ $group->group_no.'-'.$group->group_name }}
+                                            </option>
+
+                                        @endforeach
+                                        
+                                    </select>
+                                </div><!-- /.form group -->
+                            </div><!-- /.col -->
+
+                            <div class="col-md-6">                            
                                 <div class="form-group">
                                     <label>ค้นหาชื่อหมวดครุภัณฑ์</label>
-                                    <input type="text" id="searchKey" ng-keyup="getData($event)" class="form-control">
+                                    <input
+                                        type="text"
+                                        id="searchKeyword"
+                                        name="searchKeyword"
+                                        ng-model="searchKeyword"
+                                        ng-keyup="getData($event)"
+                                        class="form-control">
                                 </div><!-- /.form group -->
                             </div>
 
@@ -129,5 +161,12 @@
         </div><!-- /.row -->
 
     </section>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+        });
+    </script>
 
 @endsection

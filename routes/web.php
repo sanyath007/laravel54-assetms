@@ -87,7 +87,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     /** Asset Category */
     Route::post('/asset-cate/validate', 'AssetCategoryController@formValidate');
     Route::get('asset-cate/list', 'AssetCategoryController@index');
-    Route::get('asset-cate/search/{searchKey}', 'AssetCategoryController@search');
+    Route::get('asset-cate/search/{groupId}/{searchKey}', 'AssetCategoryController@search');
     Route::get('asset-cate/get-ajax-all', 'AssetCategoryController@getAll');
     Route::get('asset-cate/get-ajax-byid/{cateeId}', 'AssetCategoryController@getById');
     Route::get('asset-cate/get-ajax-no/{groupId}', 'AssetCategoryController@getNo');

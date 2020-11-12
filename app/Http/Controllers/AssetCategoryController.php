@@ -31,17 +31,23 @@ class AssetCategoryController extends Controller
 
     public function index()
     {
-    	return view('asset-cates.list');
+    	return view('asset-cates.list', [
+            'groups' => AssetGroup::orderBy('group_no')->get()
+        ]);
     }
 
-    public function search($searchKey)
+    public function search($groupId, $searchKey)
     {
-        if($searchKey == '0') {
+        $conditions = [];
+        if($groupId != 0) array_push($conditions, ['group_id', '=', $groupId]);
+        if($searchKey !== '0') array_push($conditions, ['cate_name', 'like', '%'.$searchKey.'%']);
+
+        if($conditions == '0') {
             $cates = AssetCategory::with('group')
                         ->orderBy('cate_no')
                         ->paginate(20);
         } else {
-            $cates = AssetCategory::where('cate_name', 'like', '%'.$searchKey.'%')
+            $cates = AssetCategory::where($conditions)
                         ->with('group')
                         ->orderBy('cate_no')
                         ->paginate(20);
