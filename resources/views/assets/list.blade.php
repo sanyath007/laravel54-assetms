@@ -29,7 +29,7 @@
                     <form id="frmSearch" name="frmSearch" role="form">
                         <div class="box-body">
                             <div class="col-md-6">
-                                <!-- Date and time range -->
+                                
                                 <div class="form-group">
                                     <label>หมวดครุภัณฑ์</label>
 

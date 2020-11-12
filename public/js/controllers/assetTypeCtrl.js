@@ -1,6 +1,9 @@
 app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalService) {
 /** ################################################################################## */
     $scope.loading = false;
+    $scope.cboAssetCate = '';
+    $scope.searchKeyword = "";
+
     $scope.pager = [];
     $scope.types = [];
     $scope.type = {
@@ -14,12 +17,13 @@ app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalSe
     };
 
     $scope.getData = function(event) {
-        console.log(event);
         $scope.types = [];
         $scope.loading = true;
         
-        let searchKey = ($("#searchKey").val() == '') ? 0 : $("#searchKey").val();
-        $http.get(CONFIG.baseUrl+ '/asset-type/search/' +searchKey)
+        let assetCate = $scope.cboAssetCate === '' ? 0 : $scope.cboAssetCate;
+        let searchKey = $scope.searchKeyword === '' ? 0 : $scope.searchKeyword;
+        
+        $http.get(`${CONFIG.baseUrl}/asset-type/search/${assetCate}/${searchKey}`)
         .then(function(res) {
             console.log(res);
             $scope.types = res.data.types.data;

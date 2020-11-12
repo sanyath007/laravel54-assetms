@@ -74,7 +74,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     /** Asset Type */
     Route::post('/asset-type/validate', 'AssetTypeController@formValidate');
     Route::get('asset-type/list', 'AssetTypeController@index');
-	Route::get('asset-type/search/{searchKey}', 'AssetTypeController@search');
+	Route::get('asset-type/search/{cateId}/{searchKey}', 'AssetTypeController@search');
     Route::get('asset-type/get-ajax-all', 'AssetTypeController@getAll');
     Route::get('asset-type/get-ajax-byid/{typeId}', 'AssetTypeController@getById');
     Route::get('asset-type/get-ajax-no/{cateId}', 'AssetTypeController@getNo');

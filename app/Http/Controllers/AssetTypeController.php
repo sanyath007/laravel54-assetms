@@ -32,15 +32,21 @@ class AssetTypeController extends Controller
 
     public function index()
     {
-    	return view('asset-types.list');
+    	return view('asset-types.list', [
+            'cates' => AssetCategory::orderBy('cate_no')->get()
+        ]);
     }
 
-    public function search($searchKey)
+    public function search($cateId, $searchKey)
     {
-        if($searchKey == '0') {
+        $conditions = [];
+        if($cateId != 0) array_push($conditions, ['cate_id', '=', $cateId]);
+        if($searchKey !== '0') array_push($conditions, ['type_name', 'like', '%'.$searchKey.'%']);
+
+        if($conditions == '0') {
             $types = AssetType::with('cate')->paginate(20);
         } else {
-            $types = AssetType::where('type_name', 'like', '%'.$searchKey.'%')
+            $types = AssetType::where($conditions)
                         ->with('cate')
                         ->paginate(20);
         }
