@@ -2,6 +2,7 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
 /** ################################################################################## */
     $scope.loading = false;
     $scope.cboParcelType = "";
+    $scope.cboAssetType = "";
     $scope.searchKeyword = "";
 
     $scope.types = [];
@@ -48,10 +49,11 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
         $scope.parcels = [];
         $scope.loading = true;
 
+        let assetType = $scope.cboAssetType === '' ? 0 : $scope.cboAssetType; 
         let parcelType = $scope.cboParcelType === '' ? 0 : $scope.cboParcelType; 
         let searchKey = $scope.searchKeyword === '' ? 0 : $scope.searchKeyword;
 
-        $http.get(CONFIG.baseUrl+ '/parcel/search/' +parcelType+ '/' +searchKey)
+        $http.get(`${CONFIG.baseUrl}/parcel/search/${assetType}/${parcelType}/${searchKey}`)
         .then(function(res) {      
             console.log(res);
             $scope.parcel_types = res.data.parcel_types;

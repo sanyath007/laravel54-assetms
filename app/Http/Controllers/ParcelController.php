@@ -62,14 +62,15 @@ class ParcelController extends Controller
     	return view('parcels.list', [
             "suppliers"     => Supplier::all(),
             "cates"         => AssetCategory::orderBy('cate_no')->get(),
-            "types"         => AssetType::all(),
+            "types"         => AssetType::orderBy('type_no')->get(),
             "parcel_types"  => $this->parcelType
     	]);
     }
 
-    public function search($parcelType, $searchKey)
+    public function search($assetType, $parcelType, $searchKey)
     {
         $conditions = [];
+        if($assetType != 0) array_push($conditions, ['asset_type', '=', $assetType]);
         if($parcelType != 0) array_push($conditions, ['parcel_type', '=', $parcelType]);
         if($searchKey !== '0') array_push($conditions, ['parcel_name', 'like', '%'.$searchKey.'%']);
 

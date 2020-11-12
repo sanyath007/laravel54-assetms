@@ -28,6 +28,32 @@
 
                     <form id="frmSearch" name="frmSearch" role="form">
                         <div class="box-body">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>หมวดครุภัณฑ์</label>
+                                    <select
+                                        id="assetType"
+                                        name="assetType"
+                                        ng-model="cboAssetType"
+                                        ng-change="getData($event);"
+                                        class="form-control select2"
+                                        style="width: 100%; font-size: 12px;">
+
+                                        <option value="" selected="selected">-- กรุณาเลือก --</option>
+
+                                        @foreach($types as $type)
+
+                                            <option value="{{ $type->type_id }}">
+                                                {{ $type->type_no.'-'.$type->type_name }}
+                                            </option>
+
+                                        @endforeach
+                                        
+                                    </select>
+                                </div><!-- /.form group -->
+                            </div><!-- /.col -->
+
                             <div class="col-md-6">
 
                                 <div class="form-group">
