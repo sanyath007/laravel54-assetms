@@ -15,6 +15,7 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
         description: '',
         parcel_type: '',
         asset_type: '',
+        asset_type_no: '0000-000',
         unit: '',
         unit_price: '',
         deprec_type: '',
@@ -33,6 +34,7 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
             description: '',
             parcel_type: '',
             asset_type: '',
+            asset_type_no: '0000-000',
             unit: '',
             unit_price: '',
             deprec_type: '',
@@ -84,6 +86,24 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
         });
     };
 
+    $scope.getParcel = function(parcelId) {
+        $http.get(CONFIG.baseUrl + '/parcel/get-ajax-byid/' +parcelId)
+        .then(function(res) {
+            $scope.parcel = res.data.parcel;
+
+            let [group, type, no] = $scope.parcel.parcel_no.split('-');
+            $scope.parcel.asset_type_no = `${group}-${type}`;
+            $scope.parcel.parcel_no = `${no}`;
+
+            $scope.parcel.asset_type = $scope.parcel.asset_type.toString();
+            $scope.parcel.parcel_type = $scope.parcel.parcel_type.toString();
+            $scope.parcel.unit = $scope.parcel.unit.toString();
+            $scope.parcel.deprec_type = $scope.parcel.deprec_type.toString();
+        }, function(err) {
+            console.log(err);
+        });
+    };
+
     $scope.getAssetType = function (cateId) {
         $scope.loading = true;
 
@@ -107,23 +127,14 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
             console.log(res);
             let tmpNo = res.data.parcelNo;
             let [group, type, no] = tmpNo.split('-');
-            let newNo = (parseInt(no)+1).toString().padStart(4, "0");
-            
-            $scope.parcel.parcel_no = `${group}-${type}-${newNo}`;
+
+            $scope.parcel.asset_type_no = `${group}-${type}`;
+            $scope.parcel.parcel_no = (parseInt(no)+1).toString().padStart(4, "0");          
 
             $scope.loading = false;
         }, function(err) {
             console.log(err);
             $scope.loading = false;
-        });
-    };
-
-    $scope.getParcel = function(parcelId) {
-        $http.get(CONFIG.baseUrl + '/parcel/get-ajax-byid/' +parcelId)
-        .then(function(res) {
-            $scope.parcel = res.data.parcel;
-        }, function(err) {
-            console.log(err);
         });
     };
 
@@ -153,7 +164,8 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
         console.log(assetId);
 
         /** Show edit form modal dialog */
-        // $('#dlgEditForm').modal('show');BASE_URL
+        // $('#dlgEditForm').modal('show');
+        
         window.location.href = CONFIG.baseUrl + '/parcel/edit/' + assetId;
     };
 
@@ -163,14 +175,15 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
         /** Get user id */
         // $scope.parcel.created_by = $("#user").val();
         // $scope.parcel.updated_by = $("#user").val();
-        console.log($scope.parcel);
 
         if(confirm("คุณต้องแก้ไขรายการหนี้เลขที่ " + $scope.parcel.parcel_id + " ใช่หรือไม่?")) {
-            $http.put(CONFIG.baseUrl + '/parcel/update/', $scope.parcel)
+            $http.put(CONFIG.baseUrl + '/parcel/update', $scope.parcel)
             .then(function(res) {
                 console.log(res);
+                toaster.pop('success', "", 'แก้ไขข้อมูลเรียบร้อยแล้ว !!!');
             }, function(err) {
                 console.log(err);
+                toaster.pop('error', "", 'พบข้อผิดพลาด !!!');
             });
         }
 
@@ -197,25 +210,5 @@ app.controller('parcelCtrl', function(CONFIG, $scope, $http, toaster, ModalServi
         /** Get debt list and re-render chart */
         // $scope.getDebtData('/asset/rpt');
         // $scope.getDebtChart($scope.cboDebtType);
-    };
-
-    $scope.discharge = function(assetId) {
-        console.log(assetId);
-
-        if(confirm("คุณต้องลดหนี้เป็นศูนย์รายการหนี้เลขที่ " + assetId + " ใช่หรือไม่?")) {
-            $http.post(CONFIG.baseUrl + '/asset/discharge', { asset_id: assetId })
-            .then(function(res) {
-                console.log(res);
-                if(res.data.status == 'success') {
-                    toaster.pop('success', "ระบบทำการงลดหนี้เป็นศูนย์สำเร็จแล้ว", "");
-                } else { 
-                    toaster.pop('error', "พบข้อผิดพลาดในระหว่างการดำเนินการ !!!", "");
-                }
-            }, function(err) {
-                console.log(err);
-
-                toaster.pop('error', "พบข้อผิดพลาดในระหว่างการดำเนินการ !!!", "");
-            });
-        }
     };
 });

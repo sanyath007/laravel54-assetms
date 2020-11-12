@@ -81,7 +81,6 @@
 	<script type="text/javascript" src="{{ asset('/js/controllers/homeCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/assetCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/assetGroupCtrl.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/controllers/assetClassCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/assetCateCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/assetTypeCtrl.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/controllers/assetUnitCtrl.js') }}"></script>

@@ -90,7 +90,7 @@ class ParcelController extends Controller
         ];
     }
 
-    public function getAjexAll($cateId)
+    public function getAll($cateId)
     {
         $types = AssetType::where('cate_id', '=', $cateId)->get();
 
@@ -102,7 +102,7 @@ class ParcelController extends Controller
     public function getById($parcelId)
     {
         return [
-            'parcel' => Parcel::with('deprecType')->get()->find($parcelId),
+            'parcel' => Parcel::find($parcelId),
         ];
     }
     
@@ -141,7 +141,6 @@ class ParcelController extends Controller
     public function add()
     {
     	return view('parcels.add', [
-            "parcels"       => Parcel::all(),
             "deprecTypes"   => DeprecType::all(),
             "units"         => AssetUnit::all(),
             "types"         => AssetType::orderBy('type_no')->get(),
@@ -154,7 +153,7 @@ class ParcelController extends Controller
     {
         $parcel = new Parcel();
         // $parcel->parcel_id = $this->generateAutoId();
-        $parcel->parcel_no = $req['parcel_no'];
+        $parcel->parcel_no = $req['asset_type_no']. '-' .$req['parcel_no'];
         $parcel->parcel_name = $req['parcel_name'];
         $parcel->description = $req['description'];
         $parcel->parcel_type = $req['parcel_type'];
@@ -179,14 +178,13 @@ class ParcelController extends Controller
         }
     }
 
-    public function edit($assetId)
+    public function edit($parcelId)
     {
         return view('parcels.edit', [
-            "asset"         => Asset::find($assetId),
-            "parcels"       => Parcel::all(),
+            "parcel"         => Parcel::find($parcelId),
+            "types"         => AssetType::orderBy('type_no')->get(),     
             "deprecTypes"   => DeprecType::all(),
             "units"         => AssetUnit::all(),
-            "types"         => AssetType::orderBy('type_no')->get(),     
             "parcelTypes"   => $this->parcelType,
             "statuses"      => $this->status
         ]);
@@ -195,7 +193,7 @@ class ParcelController extends Controller
     public function update(Request $req)
     {
         $parcel = Parcel::find($req['parcel_id']);
-        $parcel->parcel_no = $req['parcel_no'];
+        $parcel->parcel_no = $req['asset_type_no']. '-' .$req['parcel_no'];
         $parcel->parcel_name = $req['parcel_name'];
         $parcel->description = $req['description'];
         $parcel->parcel_type = $req['parcel_type'];

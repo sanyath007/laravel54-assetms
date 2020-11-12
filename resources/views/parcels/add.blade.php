@@ -32,7 +32,6 @@
                     
                         <div class="box-body">
                             <div class="row">
-
                                 <div class="col-md-6">
                                     
                                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate(parcel, 'asset_type')}">
@@ -124,15 +123,13 @@
                                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate(parcel, 'parcel_no')}">
                                         <label>เลขพัสดุ :</label>
                                         <div class="input-group">
+                                            <span class="input-group-addon">@{{ parcel.asset_type_no }}</span>
                                             <input  type="text" 
                                                 id="parcel_no" .
                                                 name="parcel_no" 
                                                 ng-model="parcel.parcel_no" 
                                                 class="form-control"
                                                 tabindex="4">
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-danger">สร้างรหัส</button>
-                                            </div>
                                         </div>
                                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate(parcel, 'parcel_no')"></span>
                                         <span class="help-block" ng-show="checkValidate(parcel, 'parcel_no')">กรุณาระบุเลขพัสดุ</span>

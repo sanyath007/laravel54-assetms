@@ -189,7 +189,7 @@ class AssetController extends Controller
     {
         return view('assets.edit', [
             "asset"         => Asset::find($assetId),
-            "parcels"     => Parcel::all(),
+            "parcels"       => Parcel::all(),
             "units"         => AssetUnit::all(),
             "budgets"       => BudgetType::all(),
             "docs"          => DocumentType::all(),
