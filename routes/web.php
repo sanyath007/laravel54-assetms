@@ -32,6 +32,7 @@ Route::group(['middleware' => 'web'], function() {
 
 Route::group(['middleware' => ['web','auth']], function () {
     Route::get('deprec/list', 'DepreciationController@index');
+    Route::get('deprec/calc', 'DepreciationController@calc');
     Route::get('deprec/search', 'DepreciationController@search');
     Route::get('deprec/get-deprec/{appId}', 'DepreciationController@getById');
     Route::get('deprec/add', 'DepreciationController@add');
@@ -40,16 +41,6 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('deprec/edit/{appId}', 'DepreciationController@edit');
     Route::put('deprec/update', 'DepreciationController@update');
     Route::delete('deprec/delete/{appId}', 'DepreciationController@delete');
-
-    // Route::get('payment/list', 'PaymentController@list');
-    // Route::get('payment/search/{searchKey}', 'PaymentController@search');
-    // Route::get('payment/get-payment/{appId}', 'PaymentController@getById');
-    // Route::get('payment/add', 'PaymentController@add');
-    // Route::post('payment/store', 'PaymentController@store');
-    // Route::get('payment/detail/{appId}', 'PaymentController@detail');
-    // Route::get('payment/edit/{appId}', 'PaymentController@edit');
-    // Route::put('payment/update', 'PaymentController@update');
-    // Route::delete('payment/delete/{appId}', 'PaymentController@delete');
 
     /** Asset */
     Route::post('/asset/validate', 'AssetController@formValidate');

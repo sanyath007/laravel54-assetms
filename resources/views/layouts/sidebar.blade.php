@@ -74,8 +74,13 @@
 						</a>
 						<ul class="treeview-menu">
 							<li>
-								<a href="{{ url('/deprec/list') }}">
+								<a href="{{ url('/deprec/calc') }}">
 									<i class="fa fa-circle-o"></i> คำนวณค่าเสื่อมครุภัณฑ์
+								</a>
+							</li>
+							<li>
+								<a href="{{ url('/deprec/list') }}">
+									<i class="fa fa-circle-o"></i> ทะเบียนทรัพย์สิน
 								</a>
 							</li>
 						</ul>

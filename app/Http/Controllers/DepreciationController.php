@@ -23,6 +23,11 @@ class DepreciationController extends Controller
         return view('depreciations.list');
     }
     
+    public function calc()
+    {
+        return view('depreciations.calc');
+    }
+    
     public function search()
     {
         $assets = Asset::whereIn('status', [1, 2, 3])
