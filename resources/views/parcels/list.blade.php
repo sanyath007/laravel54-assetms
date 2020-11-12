@@ -109,14 +109,14 @@
                     </div><!-- /.box-header -->
 
                     <div class="box-body">
-                        <div class="form-group pull-right">
+                        <!-- <div class="form-group pull-right">
                             <input  type="text" 
                                     id="table_search" 
                                     name="table_search"
                                     ng-model="searchKeyword"
                                     class="form-control pull-right" 
                                     placeholder="ค้นหาเลขที่ใบส่งของ">                                       
-                        </div>
+                        </div> -->
 
                         <table class="table table-bordered table-striped" style="font-size: 12px;">
                             <thead>
@@ -144,11 +144,11 @@
                                         </span>
                                     </td>             
                                     <td style="text-align: center;">
-                                        <a  ng-click="detail(parcel.parcel_id)"
+                                        <!-- <a  ng-click="detail(parcel.parcel_id)"
                                             class="btn btn-primary btn-xs" 
                                             title="รายละเอียด">
                                             <i class="fa fa-search"></i>
-                                        </a>
+                                        </a> -->
                                         <a  ng-click="edit(parcel.parcel_id)" 
                                             ng-show="(parcel.status!==4 || parcel.status!==3)" 
                                             class="btn btn-warning btn-xs"

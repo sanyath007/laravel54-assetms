@@ -122,14 +122,14 @@
                     </div><!-- /.box-header -->
 
                     <div class="box-body">
-                        <div class="form-group pull-right">
+                        <!-- <div class="form-group pull-right">
                             <input  type="text" 
                                     id="table_search" 
                                     name="table_search"
                                     ng-model="searchKeyword"
                                     class="form-control pull-right" 
                                     placeholder="ค้นหาเลขที่ใบส่งของ">                                       
-                        </div>
+                        </div> -->
 
                         <table class="table table-bordered table-striped" style="font-size: 12px;">
                             <thead>
