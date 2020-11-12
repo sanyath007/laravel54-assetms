@@ -56,15 +56,18 @@
                                 </div>
 
                                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate(type, 'type_no')}">
-                                    <label class="control-label">รหัสชนิดครุภัณฑ์ :</label>
-                                    <input
-                                        type="text"
-                                        id="type_no"
-                                        name="type_no"
-                                        ng-model="type.type_no"
-                                        class="form-control">
+                                    <label class="control-label">เลขชนิดครุภัณฑ์ :</label>                                   
+                                    <div class="input-group">
+                                        <span class="input-group-addon">@{{ type.cate_no }}</span>
+                                        <input
+                                            type="text"
+                                            id="type_no"
+                                            name="type_no"
+                                            ng-model="type.type_no"
+                                            class="form-control">
+                                    </div>
                                     <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate(type, 'type_no')"></span>
-                                    <span class="help-block" ng-show="checkValidate(type, 'type_no')">กรุณากรอกรหัสชนิดครุภัณฑ์ก่อน</span>
+                                    <span class="help-block" ng-show="checkValidate(type, 'type_no')">กรุณากรอกเลขชนิดครุภัณฑ์ก่อน</span>
                                 </div>
 
                                 <div class="form-group" ng-class="{'has-error has-feedback': checkValidate(type, 'type_name')}">

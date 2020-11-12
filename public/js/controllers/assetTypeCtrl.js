@@ -10,6 +10,7 @@ app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         life_y: '',
         deprec_rate_y: '',
         cate_id: '',
+        cate_no: '0000',
     };
 
     $scope.getData = function(event) {
@@ -54,6 +55,10 @@ app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         .then(function(res) {
             console.log(res);
             $scope.type = res.data.type;
+
+            let [cateNo, typeNo] = $scope.type.type_no.split('-');
+            $scope.type.cate_no = cateNo;
+            $scope.type.type_no = typeNo;
         }, function(err) {
             console.log(err);
         });
@@ -69,7 +74,8 @@ app.controller('assetTypeCtrl', function($scope, $http, toaster, CONFIG, ModalSe
             let [cate, no] = tmpNo.split('-');
             let newNo = (parseInt(no)+1).toString().padStart(3, "0");
             
-            $scope.type.type_no = `${cate}-${newNo}`;
+            $scope.type.cate_no = `${cate}`;
+            $scope.type.type_no = `${newNo}`;
 
             $scope.loading = false;
         }, function(err) {
