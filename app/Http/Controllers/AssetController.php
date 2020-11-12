@@ -141,7 +141,7 @@ class AssetController extends Controller
     {
         $asset = new Asset();
         // $asset->asset_id = $this->generateAutoId();
-        $asset->asset_no = $req['asset_no'];
+        $asset->asset_no = $req['parcel_no'].$req['asset_no'];
         $asset->asset_name = $req['asset_name'];
         $asset->description = $req['description'];
         $asset->parcel_id = $req['parcel_id'];
@@ -203,7 +203,7 @@ class AssetController extends Controller
     public function update(Request $req)
     {
         $asset = Asset::find($req['asset_id']);
-        $asset->asset_no = $req['asset_no'];
+        $asset->asset_no = $req['parcel_no'].$req['asset_no'];
         $asset->asset_name = $req['asset_name'];
         $asset->description = $req['description'];
         $asset->parcel_id = $req['parcel_id'];

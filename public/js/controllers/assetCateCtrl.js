@@ -9,7 +9,7 @@ app.controller('assetCateCtrl', function($scope, $http, toaster, CONFIG, ModalSe
         cate_no: '',
         cate_name: '',
         group_id: '',
-        group_no: ''
+        group_no: '00'
     };
 
     $scope.getData = function(event) {

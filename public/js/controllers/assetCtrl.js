@@ -15,6 +15,7 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
         asset_name: '',
         description: '',
         parcel_id: '',
+        parcel_no: '0000-000-0000',
         amount: 1,
         unit: '',
         unit_price: '',
@@ -74,6 +75,7 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
             asset_name: '',
             description: '',
             parcel_id: '',
+            parcel_no: '0000-000-0000',
             amount: '',
             unit: '',
             unit_price: '',
@@ -158,7 +160,12 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
         .then(function(res) {
             console.log(res);
             
-            $scope.asset.asset_no = res.data.parcel.parcel_no + '/';
+            if($scope.asset.asset_no) {
+                let [tmpParcelNo, tmpAssetNo] = $scope.asset.asset_no.split('/');
+                $scope.asset.asset_no = tmpAssetNo;
+            }
+
+            $scope.asset.parcel_no = res.data.parcel.parcel_no + '/';
             $scope.asset.asset_name = res.data.parcel.parcel_name;
 
             $scope.lifeYear = res.data.parcel.deprec_type.deprec_life_y;

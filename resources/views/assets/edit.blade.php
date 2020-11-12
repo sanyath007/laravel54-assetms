@@ -181,26 +181,15 @@
 
                                     <div class="form-group" ng-class="{'has-error has-feedback': checkValidate(asset, 'asset_no')}">
                                         <label>เลขพัสดุ :</label>
-                                        <input  
-                                            type="text" 
-                                            id="asset_no" .
-                                            name="asset_no" 
-                                            ng-model="asset.asset_no" 
-                                            class="form-control"
-                                            tabindex="4"
-                                            disabled
-                                        >
-                                        <!-- /input-group<div class="input-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">@{{ asset.parcel_no }}</span>
                                             <input  type="text" 
                                                 id="asset_no" .
                                                 name="asset_no" 
                                                 ng-model="asset.asset_no" 
                                                 class="form-control"
                                                 tabindex="4">
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-danger">search</button>
-                                            </div>
-                                        </div> -->
+                                        </div>
                                         <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="checkValidate(asset, 'asset_no')"></span>
                                         <span class="help-block" ng-show="checkValidate(asset, 'asset_no')">กรุณาระบุเลขพัสดุ</span>
                                     </div>
