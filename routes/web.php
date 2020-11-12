@@ -45,8 +45,8 @@ Route::group(['middleware' => ['web','auth']], function () {
     /** Asset */
     Route::post('/asset/validate', 'AssetController@formValidate');
     Route::get('asset/list', 'AssetController@index');
-    Route::get('asset/search/{cate}/{type}/{status}/{searchKey}', 'AssetController@search');
-    Route::get('asset/get-ajax-all', 'AssetController@getAjexAll');
+    Route::get('asset/search/{parcelId}/{status}/{searchKey}', 'AssetController@search');
+    Route::get('asset/get-ajax-all', 'AssetController@getAll');
     Route::get('asset/get-ajax-byid/{assetId}', 'AssetController@getById');
     Route::get('asset/add', 'AssetController@add');
     Route::post('asset/store', 'AssetController@store');
@@ -62,6 +62,7 @@ Route::group(['middleware' => ['web','auth']], function () {
     Route::get('parcel/search/{assetType}/{parcelType}/{searchKey}', 'ParcelController@search');
     Route::get('parcel/get-ajax-all', 'ParcelController@getAll');
     Route::get('parcel/get-ajax-byid/{parcelId}', 'ParcelController@getById');
+    Route::get('parcel/get-ajax-bytype/{typeId}', 'ParcelController@getByType');
     Route::get('parcel/get-ajax-no/{assetType}', 'ParcelController@getNo');
     Route::get('parcel/add', 'ParcelController@add');
     Route::post('parcel/store', 'ParcelController@store');
@@ -77,6 +78,7 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::get('asset-type/search/{cateId}/{searchKey}', 'AssetTypeController@search');
     Route::get('asset-type/get-ajax-all', 'AssetTypeController@getAll');
     Route::get('asset-type/get-ajax-byid/{typeId}', 'AssetTypeController@getById');
+    Route::get('asset-type/get-ajax-bycate/{cateId}', 'AssetTypeController@getByCate');
     Route::get('asset-type/get-ajax-no/{cateId}', 'AssetTypeController@getNo');
     Route::get('asset-type/add', 'AssetTypeController@add');
     Route::post('asset-type/store', 'AssetTypeController@store');

@@ -91,12 +91,10 @@ class ParcelController extends Controller
         ];
     }
 
-    public function getAll($cateId)
+    public function getAll()
     {
-        $types = AssetType::where('cate_id', '=', $cateId)->get();
-
         return [
-            'types' => $types,
+            'parcels' => Parcel::orderBy('parcel_no')->get()
         ];
     }
 
@@ -104,6 +102,13 @@ class ParcelController extends Controller
     {
         return [
             'parcel' => Parcel::find($parcelId),
+        ];
+    }
+
+    public function getByType($typeId)
+    {
+        return [
+            'parcels' => Parcel::where('asset_type', '=', $typeId)->orderBy('parcel_no')->get()
         ];
     }
     

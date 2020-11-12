@@ -31,21 +31,20 @@
                             <div class="col-md-6">
                                 
                                 <div class="form-group">
-                                    <label>หมวดครุภัณฑ์</label>
-
+                                    <label>ชนิดครุภัณฑ์</label>
                                     <select
-                                            id="assetCate"
-                                            name="assetCate"
-                                            ng-model="cboAssetCate"
-                                            ng-change="getAssetType(cboAssetCate);"
+                                            id="assetType"
+                                            name="assetType"
+                                            ng-model="cboAssetType"
+                                            ng-change="getParcel(cboAssetType)"
                                             class="form-control select2"
-                                            style="width: 100%; font-size: 12px;">
-
+                                            style="width: 100%; font-size: 12px;"
+                                    >
                                         <option value="" selected="selected">-- กรุณาเลือก --</option>
-                                        @foreach($cates as $cate)
+                                        @foreach($types as $type)
 
-                                            <option value="{{ $cate->cate_id }}">
-                                                {{ $cate->cate_no.'-'.$cate->cate_name }}
+                                            <option value="{{ $type->type_id }}">
+                                                {{ $type->type_no.'-'.$type->type_name }}
                                             </option>
 
                                         @endforeach
@@ -79,18 +78,18 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>ชนิดครุภัณฑ์</label>
+                                    <label>พัสดุหลัก</label>
                                     <select
-                                            id="assetType"
-                                            name="assetType"
-                                            ng-model="cboAssetType"
-                                            ng-change="getData($event)"
+                                            id="cboParcel"
+                                            name="cboParcel"
+                                            ng-model="cboParcel"
+                                            ng-change="getData($event);"
                                             class="form-control select2"
                                             style="width: 100%; font-size: 12px;">
 
                                         <option value="" selected="selected">-- กรุณาเลือก --</option>
-                                        <option ng-repeat="(index, type) in types" value="@{{ type.type_id }}">
-                                            @{{ type.type_name }}
+                                        <option ng-repeat="(index, parcel) in parcels" value="@{{ parcel.parcel_id }}">
+                                            @{{ parcel.parcel_no + '-' +parcel.parcel_name }}
                                         </option>
                                     </select>
                                 </div><!-- /.form group -->                               

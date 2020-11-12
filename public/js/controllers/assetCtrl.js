@@ -1,12 +1,12 @@
 app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalService, StringFormatService, ReportService, PaginateService) {
 /** ################################################################################## */
     $scope.loading = false;
-    $scope.cboAssetCate = "";
     $scope.cboAssetType = "";
+    $scope.cboParcel = "";
     $scope.cboAssetStatus = "";
     $scope.searchKeyword = "";
 
-    $scope.types = [];
+    $scope.parcels = [];
     $scope.assets = [];
 
     $scope.asset = {
@@ -97,16 +97,14 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
     };
 
     $scope.getData = function(event) {
-        console.log(event);
         $scope.assets = [];
         $scope.loading = true;
 
-        let assetCate = $scope.cboAssetCate === '' ? 0 : $scope.cboAssetCate;
-        let assetType = $scope.cboAssetType === '' ? 0 : $scope.cboAssetType;
+        let parcelId = $scope.cboParcel === '' ? 0 : $scope.cboParcel;
         let assetStatus = $scope.cboAssetStatus === '' ? 0 : $scope.cboAssetStatus; 
         let searchKey = $scope.searchKeyword === '' ? 0 : $scope.searchKeyword;
 
-        $http.get(CONFIG.baseUrl+ '/asset/search/' +assetCate+ '/' +assetType+ '/' +assetStatus+ '/' +searchKey)
+        $http.get(`${CONFIG.baseUrl}/asset/search/${parcelId}/${assetStatus}/${searchKey}`)
         .then(function(res) {            
             $scope.assets = res.data.assets.data;
             $scope.pager = res.data.assets;
@@ -140,13 +138,13 @@ app.controller('assetCtrl', function(CONFIG, $scope, $http, toaster, ModalServic
         });
     }
 
-    $scope.getAssetType = function (cateId) {
+    $scope.getParcel = function (typeId) {
         $scope.loading = true;
 
-        $http.get(CONFIG.baseUrl+ '/asset-type/get-ajax-all/' +cateId)
+        $http.get(CONFIG.baseUrl+ '/parcel/get-ajax-bytype/' +typeId)
         .then(function(res) {
             console.log(res);
-            $scope.types = res.data.types;
+            $scope.parcels = res.data.parcels;
 
             $scope.loading = false;
         }, function(err) {

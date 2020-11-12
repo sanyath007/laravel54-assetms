@@ -62,17 +62,16 @@ class AssetController extends Controller
     public function index()
     {
     	return view('assets.list', [
-            "suppliers" => Supplier::all(),
-            "cates"     => AssetCategory::orderBy('cate_no')->get(),
             "types"     => AssetType::all(),
+            "parcels"     => Parcel::orderBy('parcel_no')->get(),
             "statuses"    => $this->status
     	]);
     }
 
-    public function search($cate, $type, $status, $searchKey)
+    public function search($parcelId, $status, $searchKey)
     {
         $conditions = [];
-        if($type != 0) array_push($conditions, ['asset_type', '=', $type]);
+        if($parcelId != 0) array_push($conditions, ['parcel_id', '=', $parcelId]);
         if($status != 0) array_push($conditions, ['status', '=', $status]);
         if($searchKey !== '0') array_push($conditions, ['asset_name', 'like', '%'.$searchKey.'%']);
 
@@ -100,12 +99,17 @@ class AssetController extends Controller
         ];
     }
 
-    public function getAjexAll($cateId)
+    public function getAll()
     {
-        $types = AssetType::where('cate_id', '=', $cateId)->get();
-
         return [
-            'types' => $types,
+            'assets' => Asset::orderBy('date_in')->get(),
+        ];
+    }
+
+    public function getById($assetId)
+    {
+        return [
+            'asset' => Asset::find($assetId),
         ];
     }
 
@@ -176,13 +180,6 @@ class AssetController extends Controller
                 "message" => "Insert failed.",
             ];
         }
-    }
-
-    public function getById($assetId)
-    {
-        return [
-            'asset' => Asset::find($assetId),
-        ];
     }
 
     public function edit($assetId)

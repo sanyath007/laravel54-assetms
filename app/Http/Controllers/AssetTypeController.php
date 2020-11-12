@@ -58,10 +58,8 @@ class AssetTypeController extends Controller
 
     public function getAll($cateId)
     {
-        $types = AssetType::where('cate_id', '=', $cateId)->get();
-
         return [
-            'types' => $types,
+            'types' => AssetType::orderBy('type_no')->get()
         ];
     }
 
@@ -69,6 +67,13 @@ class AssetTypeController extends Controller
     {
         return [
             'type' => AssetType::find($typeId),
+        ];
+    }
+    
+    public function getByCate($cateId)
+    {
+        return [
+            'types' => AssetType::where('cate_id', '=', $cateId)->orderBy('type_no')->get()
         ];
     }
     
