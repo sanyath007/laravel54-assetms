@@ -80,7 +80,7 @@
 							</li>
 							<li>
 								<a href="{{ url('/deprec/list') }}">
-									<i class="fa fa-circle-o"></i> ทะเบียนทรัพย์สิน
+									<i class="fa fa-circle-o"></i> ทะเบียนคุมทรัพย์สิน
 								</a>
 							</li>
 						</ul>

@@ -62,7 +62,7 @@ class AssetController extends Controller
     public function index()
     {
     	return view('assets.list', [
-            "types"     => AssetType::all(),
+            "types"     => AssetType::orderBy('type_no')->get(),
             "parcels"     => Parcel::orderBy('parcel_no')->get(),
             "statuses"    => $this->status
     	]);
